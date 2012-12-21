@@ -28,8 +28,11 @@ public class ZenithCraftables
 {
 	public void crafting()
 	{
-		GameRegistry.addRecipe(new ItemStack(ZenithItems.magainiam), "xxx", "xyx", "xxx", 'x', new ItemStack(Block.obsidian), 'y', new ItemStack(ZenithItems.unstablemagainiam));
-		GameRegistry.addRecipe(new ItemStack(ZenithBlocks.refiner), "xyx", "aya", "xyx", 'x', new ItemStack(Block.blockSteel), 'y', new ItemStack(ZenithItems.silicon), 'a', new ItemStack(ZenithItems.tantalum));
+		GameRegistry.addRecipe(new ItemStack(ZenithItems.copperwire), "   ", "xxx", "   ", 'x', new ItemStack(ZenithItems.copper));
+		GameRegistry.addRecipe(new ItemStack(ZenithItems.c4blue), "xax", "xyx", "xxx", 'x', new ItemStack(ZenithItems.plastic), 'a', new ItemStack(Item.dyePowder, 2, 12), 'y', new ItemStack(Item.gunpowder));
+		GameRegistry.addRecipe(new ItemStack(ZenithItems.c4green), "xax", "xyx", "xxx", 'x', new ItemStack(ZenithItems.plastic), 'a', new ItemStack(Item.dyePowder, 2, 2), 'y', new ItemStack(Item.gunpowder));
+		GameRegistry.addRecipe(new ItemStack(ZenithItems.c4red), "xax", "xyx", "xxx", 'x', new ItemStack(ZenithItems.plastic), 'a', new ItemStack(Item.dyePowder, 2, 1), 'y', new ItemStack(Item.gunpowder));
+		GameRegistry.addRecipe(new ItemStack(ZenithItems.c4yellow), "xax", "xyx", "xxx", 'x', new ItemStack(ZenithItems.plastic), 'a', new ItemStack(Item.dyePowder, 2, 11), 'y', new ItemStack(Item.gunpowder));
 	}
 	
 }

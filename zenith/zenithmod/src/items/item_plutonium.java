@@ -37,14 +37,14 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class item_plutonium extends Item
 {
 
-	public item_plutonium() 
+	public item_plutonium(int par, int index) 
 	{
-		super(5005);
+		super(par);
 		super.setFull3D();
 		super.setItemName("plutonium");
 		super.setCreativeTab(CreativeTabs.tabMaterials);
 		super.setMaxStackSize(16);
-		super.setIconIndex(5);
+		super.setIconIndex(index);
 		LanguageRegistry.addName(this, "Plutonium Ingot");
 	}
 	

@@ -18,21 +18,22 @@
 
 package zenith.zenithmod.src.items;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
-public class item_tantalum extends Item{
+public class item_plastic extends Item
+{
 
-	public item_tantalum(int par, int index) 
+	public item_plastic(int par, int index) 
 	{
 		super(par);
 		super.setFull3D();
-		super.setItemName("tantalum");
+		super.setItemName("plastic");
 		super.setCreativeTab(CreativeTabs.tabMaterials);
 		super.setMaxStackSize(64);
 		super.setIconIndex(index);
-		LanguageRegistry.addName(this, "Tantalum Ingot");
+		LanguageRegistry.addName(this, "Plastic");
 	}
 	
 	
@@ -40,4 +41,5 @@ public class item_tantalum extends Item{
 	{
 		return "/textures/zenithitems.png";
 	}
+	
 }

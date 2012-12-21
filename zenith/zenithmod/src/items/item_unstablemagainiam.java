@@ -30,14 +30,14 @@ import net.minecraft.src.World;
 	public class item_unstablemagainiam extends Item
 	{
 
-		public item_unstablemagainiam() 
+		public item_unstablemagainiam(int par, int index) 
 		{
-			super(5000);
+			super(par);
 			super.setFull3D();
 			super.setItemName("unstablemagainiam");
 			super.setCreativeTab(CreativeTabs.tabMaterials);
 			super.setMaxStackSize(16);
-			super.setIconIndex(0);
+			super.setIconIndex(index);
 			LanguageRegistry.addName(this, "Unstable Magainiam Powder");
 		}
 		
@@ -46,15 +46,15 @@ import net.minecraft.src.World;
 			 //checks to see if player is on the ground and creates an explosion if player is.
 			 if(par2EntityPlayer.onGround)
 			 {
-				 par3World.createExplosion(par2EntityPlayer, par2EntityPlayer.posX, par2EntityPlayer.posY, par2EntityPlayer.posZ, 3.0F, true);
+				 par3World.createExplosion(par2EntityPlayer, par2EntityPlayer.posX, par2EntityPlayer.posY, par2EntityPlayer.posZ, 8.0F, true);
 			 }
 			 
 			 //checks to see if player is in creative mode, damages player and knocks him back if player isnt in creative mode.
 			 if(!par2EntityPlayer.capabilities.isCreativeMode)
 			 {
 				 --par1ItemStack.stackSize;
-				 par2EntityPlayer.setEntityHealth(par2EntityPlayer.getHealth()-10);
-				 par2EntityPlayer.knockBack(par2EntityPlayer, 5, 5, 5);
+				 par2EntityPlayer.knockBack(par2EntityPlayer, 15, 15, 15);
+				 par2EntityPlayer.setEntityHealth(par2EntityPlayer.getHealth()-20);
 			 }
 			 	//returns an item stack param because it requires a return
 			 	return par1ItemStack;

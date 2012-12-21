@@ -22,17 +22,18 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-public class item_tantalum extends Item{
+public class item_copper extends Item
+{
 
-	public item_tantalum(int par, int index) 
+	public item_copper(int par, int index) 
 	{
 		super(par);
 		super.setFull3D();
-		super.setItemName("tantalum");
+		super.setItemName("copper");
 		super.setCreativeTab(CreativeTabs.tabMaterials);
 		super.setMaxStackSize(64);
 		super.setIconIndex(index);
-		LanguageRegistry.addName(this, "Tantalum Ingot");
+		LanguageRegistry.addName(this, "Copper Ingot");
 	}
 	
 	
@@ -40,4 +41,5 @@ public class item_tantalum extends Item{
 	{
 		return "/textures/zenithitems.png";
 	}
+	
 }

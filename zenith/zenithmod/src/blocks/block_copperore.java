@@ -16,28 +16,40 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-package zenith.zenithmod.src.items;
+package zenith.zenithmod.src.blocks;
 
+import java.util.Random;
+
+import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Item;
+import net.minecraft.src.Material;
+import zenith.zenithmod.src.ZenithItems;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-public class item_tantalum extends Item{
+public class block_copperore  extends Block
+{
 
-	public item_tantalum(int par, int index) 
+	public block_copperore(int par, int index) 
 	{
-		super(par);
-		super.setFull3D();
-		super.setItemName("tantalum");
-		super.setCreativeTab(CreativeTabs.tabMaterials);
-		super.setMaxStackSize(64);
-		super.setIconIndex(index);
-		LanguageRegistry.addName(this, "Tantalum Ingot");
+		super(par, index, Material.rock);
+		super.setResistance(5.0F);
+		super.setHardness(3.0F);
+		super.setStepSound(soundStoneFootstep);
+		super.setBlockName("oreCopper");
+		super.setCreativeTab(CreativeTabs.tabBlock);
+		LanguageRegistry.addName(this, "Copper Ore");
 	}
+
 	
+	public int idDropped(int par1, Random par2Random, int par3)
+    {
+        return this.blockID; 
+    }
 	
 	public String getTextureFile() 
 	{
-		return "/textures/zenithitems.png";
+		return "/textures/zenithblocks.png";
 	}
+	
+	
 }

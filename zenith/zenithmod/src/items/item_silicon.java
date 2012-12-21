@@ -25,14 +25,14 @@ import net.minecraft.src.Item;
 public class item_silicon extends Item
 {
 	
-	public item_silicon() 
+	public item_silicon(int par, int index) 
 	{
-		super(5003);
+		super(par);
 		super.setFull3D();
 		super.setItemName("silicon");
 		super.setCreativeTab(CreativeTabs.tabMaterials);
 		super.setMaxStackSize(64);
-		super.setIconIndex(3);
+		super.setIconIndex(index);
 		LanguageRegistry.addName(this, "Silicon Ingot");
 	}
 	

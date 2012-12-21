@@ -19,9 +19,16 @@
 package zenith.zenithmod.src;
 
 import zenith.zenithmod.src.blocks.*;
+import zenith.zenithmod.src.items.item_c4blue;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.client.MinecraftForgeClient;
+
+/*
+
+ C4 not finished, need to fix orientation bug.
+ 
+ */
 
 public class ZenithBlocks 
 {
@@ -29,7 +36,13 @@ public class ZenithBlocks
 	public static final block_tantalumore tantalumore = new block_tantalumore(501, 1);
 	public static final block_siliconore siliconore = new block_siliconore(502, 2);
 	public static final block_plutoniumore plutoniumore = new block_plutoniumore(503, 3);
-	public static final block_refiner refiner = new block_refiner(504, 4);
+	public static final block_copperore copperore = new block_copperore(504, 4);
+	//public static final block_c4blue c4blue = new block_c4blue(505, 5);
+	//public static final block_c4green c4green = new block_c4green(506, 6);
+	//public static final block_c4red c4red = new block_c4red(507, 7);
+	//public static final block_c4yellow c4yellow = new block_c4yellow(508, 8);
+
+
 	
 	public void loadBlockTextures()
 	{
@@ -43,6 +56,10 @@ public class ZenithBlocks
 		GameRegistry.registerBlock(tantalumore);
 		GameRegistry.registerBlock(siliconore);
 		GameRegistry.registerBlock(plutoniumore);
-		GameRegistry.registerBlock(refiner);
+		GameRegistry.registerBlock(copperore);
+		//GameRegistry.registerBlock(c4blue);
+		//GameRegistry.registerBlock(c4green);
+		//GameRegistry.registerBlock(c4red);
+		//GameRegistry.registerBlock(c4yellow);
 	}
 }

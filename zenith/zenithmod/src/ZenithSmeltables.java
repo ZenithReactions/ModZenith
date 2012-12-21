@@ -29,6 +29,7 @@ public class ZenithSmeltables
 		
 		GameRegistry.addSmelting(ZenithBlocks.tantalumore.blockID, new ItemStack(ZenithItems.tantalum), 10.0F);
 		GameRegistry.addSmelting(ZenithBlocks.siliconore.blockID, new ItemStack(ZenithItems.silicon), 10.0F);
+		GameRegistry.addSmelting(ZenithBlocks.copperore.blockID, new ItemStack(ZenithItems.copper), 10.0F);
 	}
 	
 }

@@ -18,7 +18,14 @@
 
 package zenith.zenithmod.src;
 
+import zenith.zenithmod.src.items.item_c4blue;
+import zenith.zenithmod.src.items.item_c4green;
+import zenith.zenithmod.src.items.item_c4red;
+import zenith.zenithmod.src.items.item_c4yellow;
+import zenith.zenithmod.src.items.item_copper;
+import zenith.zenithmod.src.items.item_copperwire;
 import zenith.zenithmod.src.items.item_magainiam;
+import zenith.zenithmod.src.items.item_plastic;
 import zenith.zenithmod.src.items.item_plutonium;
 import zenith.zenithmod.src.items.item_silicon;
 import zenith.zenithmod.src.items.item_tantalum;
@@ -32,12 +39,19 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ZenithItems {
 
-public static final item_unstablemagainiam unstablemagainiam = new item_unstablemagainiam();
-public static final item_magainiam magainiam = new item_magainiam();
-public static final item_tantalum tantalum = new item_tantalum();
-public static final item_silicon silicon = new item_silicon();
-public static final item_unstableplutonium unstableplutonium = new item_unstableplutonium();
-public static final item_plutonium plutonium =new item_plutonium();
+public static final item_unstablemagainiam unstablemagainiam = new item_unstablemagainiam(5000, 0);
+public static final item_magainiam magainiam = new item_magainiam(5001, 1);
+public static final item_tantalum tantalum = new item_tantalum(5002, 2);
+public static final item_silicon silicon = new item_silicon(5003, 3);
+public static final item_unstableplutonium unstableplutonium = new item_unstableplutonium(5004, 4);
+public static final item_plutonium plutonium = new item_plutonium(5005, 5);
+public static final item_copper copper = new item_copper(5006, 6);
+public static final item_copperwire copperwire = new item_copperwire(5007, 7);
+public static final item_plastic plastic = new item_plastic(5008, 8);
+public static final item_c4blue c4blue = new item_c4blue(5009, 9);
+public static final item_c4green c4green = new item_c4green(5010, 10);
+public static final item_c4red c4red = new item_c4red(5011, 11);
+public static final item_c4yellow c4yellow = new item_c4yellow(5012, 12);
 	
 	public void loadItemTextures()
 	{
@@ -52,9 +66,12 @@ public static final item_plutonium plutonium =new item_plutonium();
 		OreDictionary.registerOre("silicon", silicon);
 		OreDictionary.registerOre("unstableplutonium", unstableplutonium);
 		OreDictionary.registerOre("plutonium", plutonium);
+		OreDictionary.registerOre("copper", copper);
+		OreDictionary.registerOre("copperwire", copperwire);
+		OreDictionary.registerOre("plastic", plastic);
+		OreDictionary.registerOre("c4blue", c4blue);
+		OreDictionary.registerOre("c4green", c4green);
+		OreDictionary.registerOre("c4red", c4red);
+		OreDictionary.registerOre("c4yellow", c4yellow);
 	}
-	
-	
-	
-	
 }
