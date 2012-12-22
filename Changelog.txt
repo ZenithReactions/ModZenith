@@ -1,0 +1,8 @@
+version: 0.0.2, date: 12/21/2012
++ added laser pistol
++ added c4 items (wip)
++ changed refiner block
++ added new ore (copper)
++ added plastic (wip)
++ added copper wire
++ optimised files
