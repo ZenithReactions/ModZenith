@@ -36,11 +36,9 @@ public class ZenithOreGenerator implements IWorldGenerator
 		{
 			genSurfaceWorldOre(world, random, chunkX*16, chunkZ*16, ZenithBlocks.magainiamoreblock, 3, 7, 16);
 			genSurfaceWorldOre(world, random, chunkX*16, chunkZ*16, ZenithBlocks.tantalumore, 5, 14, 36);
-			genSurfaceWorldOre(world, random, chunkX*16, chunkZ*16, ZenithBlocks.siliconore, 6, 18, 54);
+			genSurfaceWorldOre(world, random, chunkX*16, chunkZ*16, ZenithBlocks.siliconore, 6, 18, 44);
 			genSurfaceWorldOre(world, random, chunkX*16, chunkZ*16, ZenithBlocks.plutoniumore, 3, 8, 14);
-			genSurfaceWorldOre(world, random, chunkX*16, chunkZ*16, ZenithBlocks.copperore, 6, 18, 58);
 		}
-		
 	}
 	
 	public void genSurfaceWorldOre(World world, Random rand, int chunkX, int chunkZ, Block block, int veinSize, int blocksperchunk, int height)

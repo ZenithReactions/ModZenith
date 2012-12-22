@@ -16,19 +16,9 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-package zenith.zenithmod.src;
+package zenith.zenithmod.src.proxies;
 
-import net.minecraft.src.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
-
-public class ZenithSmeltables 
+public class CommonProxy 
 {
-
-	public void smelting()
-	{
-		
-		GameRegistry.addSmelting(ZenithBlocks.tantalumore.blockID, new ItemStack(ZenithItems.tantalum), 10.0F);
-		GameRegistry.addSmelting(ZenithBlocks.siliconore.blockID, new ItemStack(ZenithItems.silicon), 10.0F);
-	}
 	
 }

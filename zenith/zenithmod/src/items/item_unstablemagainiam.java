@@ -30,14 +30,14 @@ import net.minecraft.src.World;
 	public class item_unstablemagainiam extends Item
 	{
 
-		public item_unstablemagainiam(int par, int index) 
+		public item_unstablemagainiam() 
 		{
-			super(par);
+			super(5000);
 			super.setFull3D();
 			super.setItemName("unstablemagainiam");
 			super.setCreativeTab(CreativeTabs.tabMaterials);
 			super.setMaxStackSize(16);
-			super.setIconIndex(index);
+			super.setIconIndex(0);
 			LanguageRegistry.addName(this, "Unstable Magainiam Powder");
 		}
 		

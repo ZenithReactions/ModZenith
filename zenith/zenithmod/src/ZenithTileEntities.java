@@ -18,17 +18,13 @@
 
 package zenith.zenithmod.src;
 
-import net.minecraft.src.ItemStack;
+import zenith.zenithmod.src.tileEntities.TileEntityRefiner;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class ZenithSmeltables 
+public class ZenithTileEntities 
 {
-
-	public void smelting()
+	public void registerTileEntities()
 	{
-		
-		GameRegistry.addSmelting(ZenithBlocks.tantalumore.blockID, new ItemStack(ZenithItems.tantalum), 10.0F);
-		GameRegistry.addSmelting(ZenithBlocks.siliconore.blockID, new ItemStack(ZenithItems.silicon), 10.0F);
+		GameRegistry.registerTileEntity(TileEntityRefiner.class, "TileEntityRefiner");
 	}
-	
 }

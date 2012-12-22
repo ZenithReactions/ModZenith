@@ -18,19 +18,11 @@
 
 package zenith.zenithmod.src.blocks;
 
-import static net.minecraftforge.common.ForgeDirection.EAST;
-import static net.minecraftforge.common.ForgeDirection.NORTH;
-import static net.minecraftforge.common.ForgeDirection.SOUTH;
-import static net.minecraftforge.common.ForgeDirection.WEST;
-
 import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
-import net.minecraft.src.World;
-import net.minecraftforge.common.ForgeDirection;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class block_siliconore extends Block {
@@ -55,4 +47,6 @@ public class block_siliconore extends Block {
 	{
 		return "/textures/zenithblocks.png";
 	}
+	
+
 }

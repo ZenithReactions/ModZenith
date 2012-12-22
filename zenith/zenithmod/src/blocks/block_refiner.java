@@ -20,11 +20,18 @@ package zenith.zenithmod.src.blocks;
 
 import java.util.Random;
 
+import zenith.zenithmod.src.mod_zenith;
+import zenith.zenithmod.src.tileEntities.TileEntityRefiner;
+
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.src.Block;
 import net.minecraft.src.BlockContainer;
 import net.minecraft.src.CreativeTabs;
+import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
+import net.minecraft.src.MathHelper;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.TileEntityFurnace;
 import net.minecraft.src.World;
@@ -40,6 +47,7 @@ public class block_refiner extends BlockContainer
 		super.setStepSound(soundStoneFootstep);
 		super.setBlockName("refiner");
 		super.setCreativeTab(CreativeTabs.tabDecorations);
+        super.setRequiresSelfNotify();
 		LanguageRegistry.addName(this, "Refiner Machine");
 	}
 	
@@ -48,15 +56,191 @@ public class block_refiner extends BlockContainer
 		return this.blockID;
 	}
 	
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        return false;
+    	TileEntityRefiner tileEntity = (TileEntityRefiner) world.getBlockTileEntity(x, y, z);
+    	
+    	if(player.isSneaking()) return false;
+    	
+    	player.openGui(mod_zenith.instance, 0, world, x, y, z);
+    	
+        return true;
     }
+    
+    public void onBlockPlacedBy(World world, int i, int j, int k, EntityLiving entityliving)
+    {
+    	int l = MathHelper.floor_double((double)((entityliving.rotationYaw * 4.0F) / 360F) + 2.5D) & 3;
+    	world.setBlockMetadataWithNotify(i, j, k, l);
+    }
+    
+    public int getBlockTextureFromSideAndMetadata(int i, int j)
+    {
+    	if(i == 0)
+    	{
+	        switch(j)
+	        {
+	        	case 0:
+	        	{
+	        		return this.blockIndexInTexture + 2;
+	        	}
+	        	
+	        	case 1:
+	        	{
+	        		return this.blockIndexInTexture + 2;
+	        	}
+	        	
+	        	case 2:
+	        	{
+	        		return this.blockIndexInTexture + 2;
+	        	}
+	        	
+	        	case 3:
+	        	{
+	        		return this.blockIndexInTexture + 2;
+	        	}
+	        }
+    	}
+    	
+    	if(i == 1)
+    	{
+	        switch(j)
+	        {
+	        	case 0:
+	        	{
+	        		return this.blockIndexInTexture + 3;
+	        	}
+	        	
+	        	case 1:
+	        	{
+	        		return this.blockIndexInTexture + 3;
+	        	}
+	        	
+	        	case 2:
+	        	{
+	        		return this.blockIndexInTexture + 3;
+	        	}
+	        	
+	        	case 3:
+	        	{
+	        		return this.blockIndexInTexture + 3;
+	        	}
+	        }
+    	}
+    	
+    	if(i == 2)
+    	{
+	        switch(j)
+	        {
+	        	case 0:
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        	
+	        	case 1:
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        	
+	        	case 2:
+	        	{
+	        		return this.blockIndexInTexture + 0;
+	        	}
+	        	
+	        	case 3:
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        }
+    	}
+    	
+    	if(i == 3)
+    	{
+	        switch(j)
+	        {
+	        	case 0:
+	        	{
+	        		return this.blockIndexInTexture + 0;
+	        	}
+	        	
+	        	case 1:
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        	
+	        	case 2:
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        	
+	        	case 3:
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        }
+    	}
+    	
+    	if(i == 4)
+    	{
+	        switch(j)
+	        {
+	        	case 0:
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        	
+	        	case 1:
+	        	{
+	        		return this.blockIndexInTexture + 0;
+	        	}
+	        	
+	        	case 2:
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        	
+	        	case 3:
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        }
+    	}
+    	
+    	if(i == 5)
+    	{
+	        switch(j)
+	        {
+	        	case 0://north
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        	
+	        	case 1://east
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        	
+	        	case 2://south
+	        	{
+	        		return this.blockIndexInTexture + 1;
+	        	}
+	        	
+	        	case 3://west
+	        	{
+	        		return this.blockIndexInTexture + 0;
+	        	}
+	        }
+    	}
+    	return this.blockIndexInTexture + 0;
+    }
+    
+	public String getTextureFile() 
+	{
+		return "/textures/zenithblocks2.png";
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(World var1) 
 	{
-		return null;
+		return new TileEntityRefiner();
 	}
-	
 }

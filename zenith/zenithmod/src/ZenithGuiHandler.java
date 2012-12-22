@@ -18,7 +18,12 @@
 
 package zenith.zenithmod.src;
 
+import zenith.zenithmod.src.*;
+import zenith.zenithmod.src.containers.ContainerRefiner;
+import zenith.zenithmod.src.gui.GuiRefiner;
+import zenith.zenithmod.src.tileEntities.TileEntityRefiner;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 
@@ -28,12 +33,24 @@ public class ZenithGuiHandler implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) 
 	{
+		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		
+		if(tileEntity instanceof TileEntityRefiner)
+		{
+			return new ContainerRefiner(player.inventory, (TileEntityRefiner)tileEntity);
+		}
 		return null;
 	}
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) 
 	{
+		
+		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		if(tileEntity instanceof TileEntityRefiner)
+		{
+			return new GuiRefiner(player.inventory, (TileEntityRefiner)tileEntity);	
+		}
 		return null;
 	}
 

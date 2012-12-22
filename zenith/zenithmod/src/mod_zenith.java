@@ -18,6 +18,7 @@
 
 package zenith.zenithmod.src;
 
+import zenith.zenithmod.src.proxies.CommonProxy;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -29,6 +30,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid="mod_zenith", name="Zenith", version="0.0.1")
@@ -40,16 +42,23 @@ public class mod_zenith
 	public static final ZenithOreGenerator oregen = new ZenithOreGenerator();
 	private static final ZenithCraftables zcraft = new ZenithCraftables();
 	private static final ZenithSmeltables zsmelt = new ZenithSmeltables();
+	private static final ZenithGuiHandler guihand = new ZenithGuiHandler();
+	private static final ZenithTileEntities ztiles = new ZenithTileEntities();
+	private static final ZenithEntities zentities = new ZenithEntities();
+	private static final ZenithRenderer zrender = new ZenithRenderer();
 
 	@Instance("mod_zenith")
 	public static mod_zenith instance;
+	
+	@SidedProxy(clientSide = "zenith.zenithmod.src.proxies.ClientProxy", serverSide = "zenith.zenithmod.src.proxies.CommonProxy")
+	public static CommonProxy proxy;
+	
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		zblocks.loadBlockTextures();
 		zitems.loadItemTextures();
-	
 	}
 	
 	@Init
@@ -59,7 +68,12 @@ public class mod_zenith
 		zitems.registerItems();
 		zcraft.crafting();
 		zsmelt.smelting();
+		ztiles.registerTileEntities();
+		zentities.registerEntities();
+		zrender.registerRender();
+		
 		GameRegistry.registerWorldGenerator(oregen);
+		NetworkRegistry.instance().registerGuiHandler(instance, guihand);
 	}
 	
 	@PostInit
@@ -67,4 +81,7 @@ public class mod_zenith
 	{
 		
 	}
+	
+	//TODO Finish laser pistol
+	//TODO Add feature to refiner block
 }
