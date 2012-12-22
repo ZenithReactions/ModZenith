@@ -24,14 +24,14 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class item_tantalum extends Item{
 
-	public item_tantalum(int par, int index) 
+	public item_tantalum() 
 	{
-		super(par);
+		super(5002);
 		super.setFull3D();
 		super.setItemName("tantalum");
 		super.setCreativeTab(CreativeTabs.tabMaterials);
 		super.setMaxStackSize(64);
-		super.setIconIndex(index);
+		super.setIconIndex(2);
 		LanguageRegistry.addName(this, "Tantalum Ingot");
 	}
 	
@@ -40,4 +40,16 @@ public class item_tantalum extends Item{
 	{
 		return "/textures/zenithitems.png";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

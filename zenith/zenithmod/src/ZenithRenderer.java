@@ -18,17 +18,16 @@
 
 package zenith.zenithmod.src;
 
-import net.minecraft.src.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.src.EntityArrow;
+import net.minecraft.src.RenderArrow;
+import zenith.zenithmod.src.entities.EntityLaserBeam;
+import zenith.zenithmod.src.render.RenderLaserBeam;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
-public class ZenithSmeltables 
+public class ZenithRenderer 
 {
-
-	public void smelting()
+	public void registerRender()
 	{
-		
-		GameRegistry.addSmelting(ZenithBlocks.tantalumore.blockID, new ItemStack(ZenithItems.tantalum), 10.0F);
-		GameRegistry.addSmelting(ZenithBlocks.siliconore.blockID, new ItemStack(ZenithItems.silicon), 10.0F);
+		RenderingRegistry.registerEntityRenderingHandler(EntityLaserBeam.class, new RenderLaserBeam());
 	}
-	
 }

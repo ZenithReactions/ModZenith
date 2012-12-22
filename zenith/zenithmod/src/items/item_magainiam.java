@@ -24,15 +24,15 @@ import net.minecraft.src.Item;
 
 public class item_magainiam extends Item{
 
-	public item_magainiam(int par, int index) 
+	public item_magainiam() 
 	{
-		super(par);
+		super(5001);
 		super.setFull3D();
 		super.setItemName("magainiam");
 		super.setCreativeTab(CreativeTabs.tabMaterials);
 		super.setMaxStackSize(16);
-		super.setIconIndex(index);
-		LanguageRegistry.addName(this, "Magainiam Ingot");
+		super.setIconIndex(1);
+		LanguageRegistry.addName(this, "Magainiam");
 	}
 	
 	

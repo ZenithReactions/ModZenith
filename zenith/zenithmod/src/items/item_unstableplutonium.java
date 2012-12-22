@@ -28,14 +28,14 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class item_unstableplutonium extends Item
 {
 
-	public item_unstableplutonium(int par, int index) 
+	public item_unstableplutonium() 
 	{
-		super(par);
+		super(5004);
 		super.setFull3D();
 		super.setItemName("unstableplutonium");
 		super.setCreativeTab(CreativeTabs.tabMaterials);
 		super.setMaxStackSize(16);
-		super.setIconIndex(index);
+		super.setIconIndex(4);
 		LanguageRegistry.addName(this, "Unstable Plutonium");
 	}
 	

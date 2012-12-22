@@ -18,28 +18,43 @@
 
 package zenith.zenithmod.src.items;
 
+import zenith.zenithmod.src.entities.EntityLaserBeam;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.src.CreativeTabs;
+import net.minecraft.src.EntityArrow;
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Item;
+import net.minecraft.src.ItemStack;
+import net.minecraft.src.World;
 
-public class item_silicon extends Item
+public class item_LaserPistol extends Item
 {
-	
-	public item_silicon() 
+
+	public item_LaserPistol(int id, int index)
 	{
-		super(5003);
+		super(id);
+		super.setIconIndex(index);
 		super.setFull3D();
-		super.setItemName("silicon");
-		super.setCreativeTab(CreativeTabs.tabMaterials);
-		super.setMaxStackSize(64);
-		super.setIconIndex(3);
-		LanguageRegistry.addName(this, "Silicon Ingot");
+		super.setItemName("LaserGunPistol");
+		super.setCreativeTab(CreativeTabs.tabCombat);
+		super.setMaxStackSize(1);
+		LanguageRegistry.addName(this, "Laser Pistol");
 	}
 	
-	
+    public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player)
+    {
+    	if(!world.isRemote)
+    	{
+    		EntityLaserBeam laser = new EntityLaserBeam(world, player);
+    		world.spawnEntityInWorld(laser);
+    	}
+    	return itemstack;
+    }
+    
 	public String getTextureFile() 
 	{
-		return "/textures/zenithitems.png";
+		return "/textures/zenithitems2.png";
 	}
-
+	
+	
 }
