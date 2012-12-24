@@ -18,7 +18,14 @@
 
 package zenith.zenithmod.src.proxies;
 
+import zenith.zenithmod.src.ZenithBlocks;
+import zenith.zenithmod.src.ZenithItems;
+
 public class ClientProxy extends CommonProxy
 {
-	
+	public void loadTextures()
+	{
+		ZenithItems.loadItemTextures();
+		ZenithBlocks.loadBlockTextures();
+	}
 }

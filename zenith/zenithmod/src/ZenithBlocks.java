@@ -19,6 +19,7 @@
 package zenith.zenithmod.src;
 
 import zenith.zenithmod.src.blocks.*;
+import zenith.zenithmod.src.proxies.CommonProxy;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -30,20 +31,20 @@ public class ZenithBlocks
 	public static final Block siliconore = new block_siliconore(502, 2);
 	public static final Block plutoniumore = new block_plutoniumore(503, 3);
 	public static final Block copperore = new block_copperore(504, 4);
-	//public static final block_c4blue c4blue = new block_c4blue(505, 5);
-	//public static final block_c4green c4green = new block_c4green(506, 6);
-	//public static final block_c4red c4red = new block_c4red(507, 7);
-	//public static final block_c4yellow c4yellow = new block_c4yellow(508, 8);
+	public static final block_c4blue c4blue = new block_c4blue(505, 5);
+	public static final block_c4green c4green = new block_c4green(506, 6);
+	public static final block_c4red c4red = new block_c4red(507, 7);
+	public static final block_c4yellow c4yellow = new block_c4yellow(508, 8);
 	
 	
 	//ZenithBlocks2
-	public static final Block refiner = new block_refiner(505, 0);
+	public static final Block refiner = new block_refiner(509, 0);
 
 	
-	public void loadBlockTextures()
+	public static void loadBlockTextures()
 	{
-		MinecraftForgeClient.preloadTexture("/textures/zenithblocks.png");
-		MinecraftForgeClient.preloadTexture("/textures/zenithblocks2.png");
+		MinecraftForgeClient.preloadTexture(CommonProxy.BLOCKS_PNG);
+		MinecraftForgeClient.preloadTexture(CommonProxy.BLOCKS2_PNG);
 	}
 	
 	public void registerBlocks()
@@ -54,9 +55,9 @@ public class ZenithBlocks
 		GameRegistry.registerBlock(plutoniumore, plutoniumore.getBlockName());
 		GameRegistry.registerBlock(refiner, refiner.getBlockName());
 		GameRegistry.registerBlock(copperore, copperore.getBlockName());
-		//GameRegistry.registerBlock(c4blue);
-		//GameRegistry.registerBlock(c4green);
-		//GameRegistry.registerBlock(c4red);
-		//GameRegistry.registerBlock(c4yellow);
+		GameRegistry.registerBlock(c4blue, "C4Blue");
+		GameRegistry.registerBlock(c4green, "C4Green");
+		GameRegistry.registerBlock(c4red, "C4Red");
+		GameRegistry.registerBlock(c4yellow, "C4Yellow");
 	}
 }

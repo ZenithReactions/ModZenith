@@ -33,6 +33,7 @@ import zenith.zenithmod.src.items.item_silicon;
 import zenith.zenithmod.src.items.item_tantalum;
 import zenith.zenithmod.src.items.item_unstablemagainiam;
 import zenith.zenithmod.src.items.item_unstableplutonium;
+import zenith.zenithmod.src.proxies.CommonProxy;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.oredict.OreDictionary;
@@ -58,9 +59,10 @@ public class ZenithItems
 	//ZenithItems2.png
 	public static final item_LaserPistol laserPistol = new item_LaserPistol(5013, 0);
 	
-	public void loadItemTextures()
+	public static void loadItemTextures()
 	{
-		MinecraftForgeClient.preloadTexture("/textures/zenithitems.png");
+		MinecraftForgeClient.preloadTexture(CommonProxy.ITEMS_PNG);
+		MinecraftForgeClient.preloadTexture(CommonProxy.ITEMS2_PNG);
 	}
 	
 	public void registerItems()

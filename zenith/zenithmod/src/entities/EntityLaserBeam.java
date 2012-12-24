@@ -19,6 +19,7 @@
 package zenith.zenithmod.src.entities;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -73,6 +74,11 @@ public class EntityLaserBeam extends Entity
         if (var4 != null)
         {
             var3 = this.worldObj.getWorldVec3Pool().getVecFromPool(var4.hitVec.xCoord, var4.hitVec.yCoord, var4.hitVec.zCoord);
+            Random rand = new Random();
+            int chance = rand.nextInt(10000);
+            
+            if(chance == 9999) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 3.0f, true);
+            
             this.setDead();
         }
         

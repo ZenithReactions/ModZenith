@@ -43,7 +43,7 @@ public class item_LaserPistol extends Item
     public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player)
     {
     	if(!world.isRemote)
-    	{
+    	{   
     		EntityLaserBeam laser = new EntityLaserBeam(world, player);
     		world.spawnEntityInWorld(laser);
     	}

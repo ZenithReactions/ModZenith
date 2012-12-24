@@ -18,7 +18,16 @@
 
 package zenith.zenithmod.src.proxies;
 
+import zenith.zenithmod.src.ZenithBlocks;
+import zenith.zenithmod.src.ZenithItems;
+
 public class CommonProxy 
 {
+	public static final String BLOCKS_PNG = "/textures/zenithblocks.png";
+	public static final String BLOCKS2_PNG = "/textures/zenithblocks2.png";
+	public static final String ITEMS_PNG = "/textures/zenithitems.png";
+	public static final String ITEMS2_PNG = "/textures/zenithitems2.png";
+	
+	public void loadTextures() { }
 	
 }

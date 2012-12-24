@@ -33,7 +33,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="mod_zenith", name="Zenith", version="0.0.2")
+@Mod(modid="mod_zenith", name="Zenith", version="0.0.2.1")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class mod_zenith 
 {
@@ -56,8 +56,7 @@ public class mod_zenith
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		zblocks.loadBlockTextures();
-		zitems.loadItemTextures();
+		
 	}
 	
 	@Init
@@ -72,7 +71,7 @@ public class mod_zenith
 		zrender.registerRender();
 		GameRegistry.registerWorldGenerator(oregen);
 		NetworkRegistry.instance().registerGuiHandler(instance, guihand);
-		GameRegistry.registerWorldGenerator(oregen);
+		proxy.loadTextures();
 	}
 	
 	@PostInit

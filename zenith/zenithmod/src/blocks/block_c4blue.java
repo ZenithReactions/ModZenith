@@ -31,11 +31,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-//TODO Fix Orientation Bugs.
 
 public class block_c4blue extends Block
 {
@@ -82,6 +83,16 @@ public class block_c4blue extends Block
             return var2.renderAsNormalBlock() && var2.blockMaterial.blocksMovement();
         }
     }
+    
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    {
+        return null;
+    }
+    
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
    
     public boolean isOpaqueCube()
     {
@@ -94,209 +105,201 @@ public class block_c4blue extends Block
                (par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH)) ||
                (par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH));
     }
-
-   
-
-    private int getOrientation(World par1World, int par2, int par3, int par4)
+    
+    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
-        if (par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST)) return 1;
-        if (par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST)) return 2;
-        if (par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH)) return 3;
-        if (par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH)) return 4;
-        return 1;
+        int metadatai = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+		 
+		 float var4 = 0.2F;
+		 float var3 = 0.8F;
+		 float var6 = 0.35F;
+		 float var7 = 0.125F;
+		 
+		 if (metadatai == 0)//north
+		 {
+		     this.setBlockBounds(0.125f, 0.1875f, 0.0f, 0.875f, 0.8125f, 0.1f);
+		 }
+		 
+		 if (metadatai == 1)//east
+		 {
+		     this.setBlockBounds(0.9f, 0.1875f, 0.125f, 1.0f, 0.8125f, 0.875f);
+		 }
+		 
+		 if (metadatai == 2)//south
+		 {
+		     this.setBlockBounds(0.125f, 0.1875f, 0.9f, 0.875f, 0.8125f, 1.0f);
+		 }
+		 
+		 if (metadatai == 3)//west
+		 {
+		     this.setBlockBounds(0.0f, 0.1875f, 0.125f, 0.1f, 0.8125f, 0.875f);
+		 }
     }
     
     public void onBlockPlacedBy(World world, int i, int j, int k, EntityLiving entityliving)
     {
-     int l = MathHelper.floor_double((double)((entityliving.rotationYaw * 4.0F) / 360F) + 2.5D) & 3;
-     world.setBlockMetadataWithNotify(i, j, k, l);
-     
-     int metadatai = world.getBlockMetadata(i, j, k);
-     
-     float var4 = 0.2F;
-     float var5 = 0.8F;
-     float var6 = 0.35F;
-     float var7 = 0.125F;
-     
-     if (metadatai == 1)
-     {
-         this.setBlockBounds(0.0F, var4, 0.5F - var6, var7, var5, 0.5F + var6);
-     }
-     else if (metadatai == 2)
-     {
-         this.setBlockBounds(1.0F - var7, var4, 0.5F - var6, 1.0F, var5, 0.5F + var6);
-     }
-     else if (metadatai == 3)
-     {
-         this.setBlockBounds(0.5F - var6, var4, 0.0F, 0.5F + var6, var5, var7);
-     }
-     else if (metadatai == 4)
-     {
-         this.setBlockBounds(0.5F - var6, var4, 1.0F - var7, 0.5F + var6, var5, 1.0F);
-     }
-     
-     
+		 int l = MathHelper.floor_double((double)((entityliving.rotationYaw * 4.0F) / 360F) + 2.5D) & 3;
+		 world.setBlockMetadataWithNotify(i, j, k, l);
     }
     
     public int getBlockTextureFromSideAndMetadata(int i, int j)
     {
-     if(i == 0)
-     {
-         switch(j)
-         {
-          case 0:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 1:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 2:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 3:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-         }
-     }
-     
-     if(i == 1)
-     {
-         switch(j)
-         {
-          case 0:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 1:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 2:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 3:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-         }
-     }
-     
-     if(i == 2)
-     {
-         switch(j)
-         {
-          case 0:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 1:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 2:
-          {
-           return this.blockIndexInTexture + 0;
-          }
-          
-          case 3:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-         }
-     }
-     
-     if(i == 3)
-     {
-         switch(j)
-         {
-          case 0:
-          {
-           return this.blockIndexInTexture + 0;
-          }
-          
-          case 1:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 2:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 3:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-         }
-     }
-     
-     if(i == 4)
-     {
-         switch(j)
-         {
-          case 0:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 1:
-          {
-           return this.blockIndexInTexture + 0;
-          }
-          
-          case 2:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 3:
-          {
-           return this.blockIndexInTexture + 4;
-          }
-         }
-     }
-     
-     if(i == 5)
-     {
-         switch(j)
-         {
-          case 0://north
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 1://east
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 2://south
-          {
-           return this.blockIndexInTexture + 4;
-          }
-          
-          case 3://west
-          {
-           return this.blockIndexInTexture + 0;
-          }
-         }
-     }
-     return this.blockIndexInTexture + 0;
-    }
-
-
+		 if(i == 0)
+		 {
+		     switch(j)
+		     {
+		      case 0:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 1:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 2:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 3:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		     }
+		 }
+		 
+		 if(i == 1)
+		 {
+		     switch(j)
+		     {
+		      case 0:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 1:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 2:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 3:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		     }
+		 }
+		 
+		 if(i == 2)
+		 {
+		     switch(j)
+		     {
+		      case 0:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 1:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 2:
+		      {
+		       return this.blockIndexInTexture + 0;
+		      }
+		      
+		      case 3:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		     }
+		 }
+		 
+		 if(i == 3)
+		 {
+		     switch(j)
+		     {
+		      case 0:
+		      {
+		       return this.blockIndexInTexture + 0;
+		      }
+		      
+		      case 1:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 2:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 3:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		     }
+		 }
+		 
+		 if(i == 4)
+		 {
+		     switch(j)
+		     {
+		      case 0:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 1:
+		      {
+		       return this.blockIndexInTexture + 0;
+		      }
+		      
+		      case 2:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		      
+		      case 3:
+		      {
+		       return this.blockIndexInTexture + 4;
+		      }
+		     }
+		 }
+		 
+		 if(i == 5)
+		 {
+		     switch(j)
+		     {
+			      case 0://north
+				  {
+				   return this.blockIndexInTexture + 4;
+				  }
+				  
+				  case 1://east
+				  {
+				   return this.blockIndexInTexture + 4;
+				  }
+				  
+				  case 2://south
+				  {
+				   return this.blockIndexInTexture + 4;
+				  }
+				  
+				  case 3://west
+				  {
+				   return this.blockIndexInTexture + 0;
+				  }
+		     }
+		 }
+		 
+		 return this.blockIndexInTexture + 0;
+	}
 }

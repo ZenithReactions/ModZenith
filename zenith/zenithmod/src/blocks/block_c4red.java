@@ -29,15 +29,15 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-//TODO Fix Orientation Bugs.
 
 public class block_c4red extends Block
 {
-
 	public block_c4red(int par, int index) 
 	{
 		super(par, index, Material.clay);
@@ -48,6 +48,42 @@ public class block_c4red extends Block
 		super.setCreativeTab(CreativeTabs.tabBlock);
 		LanguageRegistry.addName(this, "Red C4 Block");
 	}
+	
+    public void onBlockPlacedBy(World world, int i, int j, int k, EntityLiving entityliving)
+    {
+		 int l = MathHelper.floor_double((double)((entityliving.rotationYaw * 4.0F) / 360F) + 2.5D) & 3;
+		 world.setBlockMetadataWithNotify(i, j, k, l);
+    }
+    
+    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    {
+        int metadatai = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+		 
+		 float var4 = 0.2F;
+		 float var3 = 0.8F;
+		 float var6 = 0.35F;
+		 float var7 = 0.125F;
+		 
+		 if (metadatai == 0)//north
+		 {
+		     this.setBlockBounds(0.125f, 0.1875f, 0.0f, 0.875f, 0.8125f, 0.1f);
+		 }
+		 
+		 if (metadatai == 1)//east
+		 {
+		     this.setBlockBounds(0.9f, 0.1875f, 0.125f, 1.0f, 0.8125f, 0.875f);
+		 }
+		 
+		 if (metadatai == 2)//south
+		 {
+		     this.setBlockBounds(0.125f, 0.1875f, 0.9f, 0.875f, 0.8125f, 1.0f);
+		 }
+		 
+		 if (metadatai == 3)//west
+		 {
+		     this.setBlockBounds(0.0f, 0.1875f, 0.125f, 0.1f, 0.8125f, 0.875f);
+		 }
+    }
 	
 	public int idDropped(int par1, Random par2Random, int par3)
     {
@@ -97,115 +133,165 @@ public class block_c4red extends Block
                (par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH)) ||
                (par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH));
     }
-
-    public int func_85104_a(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9)
-    {
-        int var10 = par1World.getBlockMetadata(par2, par3, par4);
-        int var11 = var10 & 8;
-        var10 &= 7;
-
-
-        ForgeDirection dir = ForgeDirection.getOrientation(par5);
-
-        if (dir == NORTH && par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH))
-        {
-            var10 = 4;
-        }
-        else if (dir == SOUTH && par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH))
-        {
-            var10 = 3;
-        }
-        else if (dir == WEST && par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST))
-        {
-            var10 = 2;
-        }
-        else if (dir == EAST && par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST))
-        {
-            var10 = 1;
-        }
-        else
-        {
-            var10 = this.getOrientation(par1World, par2, par3, par4);
-        }
-
-        return var10 + var11;
-    }
-
-    private int getOrientation(World par1World, int par2, int par3, int par4)
-    {
-        if (par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST)) return 1;
-        if (par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST)) return 2;
-        if (par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH)) return 3;
-        if (par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH)) return 4;
-        return 1;
-    }
     
-    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    public int getBlockTextureFromSideAndMetadata(int i, int j)
     {
-        int var5 = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
-        this.func_82534_e(var5);
-    }
-    
-    private void func_82534_e(int par1)
-    {
-        int var2 = par1 & 7;
-        boolean var3 = (par1 & 8) > 0;
-        float var4 = 0.2F;
-        float var5 = 0.8F;
-        float var6 = 0.35F;
-        float var7 = 0.125F;
-
-        if (var3)
-        {
-            var7 = 0.0625F;
-        }
-
-        if (var2 == 1)
-        {
-            this.setBlockBounds(0.0F, var4, 0.5F - var6, var7, var5, 0.5F + var6);
-        }
-        else if (var2 == 2)
-        {
-            this.setBlockBounds(1.0F - var7, var4, 0.5F - var6, 1.0F, var5, 0.5F + var6);
-        }
-        else if (var2 == 3)
-        {
-            this.setBlockBounds(0.5F - var6, var4, 0.0F, 0.5F + var6, var5, var7);
-        }
-        else if (var2 == 4)
-        {
-            this.setBlockBounds(0.5F - var6, var4, 1.0F - var7, 0.5F + var6, var5, 1.0F);
-        }
-    }
-
-    public int getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
-    {
-        if (par5 == 1)
-        {
-            return this.blockIndexInTexture + 2;
-        }
-        else if (par5 == 0)
-        {
-            return this.blockIndexInTexture + 2;
-        }
-        else if (par5 == 4)
-        {
-            return this.blockIndexInTexture + 2;
-        }
-        else if (par5 == 5)
-        {
-            return this.blockIndexInTexture + 2;
-        }
-        else if (par5 == 3)
-        {
-            return this.blockIndexInTexture + 2;
-        }
-        else
-        {
-            int var6 = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
-            return par5 != var6 ? this.blockIndexInTexture : this.blockIndexInTexture;
-        }
-    }
-	
-	
+		 if(i == 0)
+		 {
+		     switch(j)
+		     {
+		      case 0:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 1:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 2:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 3:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		     }
+		 }
+		 
+		 if(i == 1)
+		 {
+		     switch(j)
+		     {
+		      case 0:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 1:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 2:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 3:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		     }
+		 }
+		 
+		 if(i == 2)
+		 {
+		     switch(j)
+		     {
+		      case 0:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 1:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 2:
+		      {
+		       return this.blockIndexInTexture + 0;
+		      }
+		      
+		      case 3:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		     }
+		 }
+		 
+		 if(i == 3)
+		 {
+		     switch(j)
+		     {
+		      case 0:
+		      {
+		       return this.blockIndexInTexture + 0;
+		      }
+		      
+		      case 1:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 2:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 3:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		     }
+		 }
+		 
+		 if(i == 4)
+		 {
+		     switch(j)
+		     {
+		      case 0:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 1:
+		      {
+		       return this.blockIndexInTexture + 0;
+		      }
+		      
+		      case 2:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		      
+		      case 3:
+		      {
+		       return this.blockIndexInTexture + 2;
+		      }
+		     }
+		 }
+		 
+		 if(i == 5)
+		 {
+		     switch(j)
+		     {
+			      case 0://north
+				  {
+				   return this.blockIndexInTexture + 2;
+				  }
+				  
+				  case 1://east
+				  {
+				   return this.blockIndexInTexture + 2;
+				  }
+				  
+				  case 2://south
+				  {
+				   return this.blockIndexInTexture + 2;
+				  }
+				  
+				  case 3://west
+				  {
+				   return this.blockIndexInTexture + 0;
+				  }
+		     }
+		 }
+		 
+		 return this.blockIndexInTexture + 0;
+	}
 }
