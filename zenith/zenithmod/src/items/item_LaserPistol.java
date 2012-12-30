@@ -50,6 +50,11 @@ public class item_LaserPistol extends Item
     	return itemstack;
     }
     
+    public int getMaxItemUseDuration(ItemStack par1ItemStack)
+    {
+        return 50;
+    }
+    
 	public String getTextureFile() 
 	{
 		return "/textures/zenithitems2.png";

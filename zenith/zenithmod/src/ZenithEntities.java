@@ -25,7 +25,6 @@ public class ZenithEntities
 {
 	public void registerEntities()
 	{
-		EntityRegistry.registerModEntity(EntityLaserBeam.class, "LaserBeam", 1, mod_zenith.instance, 160, 5, false);
-		//EntityRegistry.registerGlobalEntityID(EntityLaserBeam.class, "LaserBeam", EntityRegistry.findGlobalUniqueEntityId());
+		EntityRegistry.registerModEntity(EntityLaserBeam.class, "LaserBeam", 0, mod_zenith.instance, 160, 5, true);
 	}
 }

@@ -33,7 +33,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="mod_zenith", name="Zenith", version="0.0.2.1")
+@Mod(modid="mod_zenith", name="Zenith", version="0.0.2.2")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class mod_zenith 
 {

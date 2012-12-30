@@ -23,6 +23,9 @@ import java.util.Random;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
@@ -34,7 +37,7 @@ import net.minecraft.world.World;
 public class EntityLaserBeam extends Entity
 {
 	
-	private EntityLiving playerShooting = null;
+	private EntityPlayer playerShooting;
 	
     public EntityLaserBeam(World par1World)
     {
@@ -46,19 +49,16 @@ public class EntityLaserBeam extends Entity
 	{
 		super(world);
 		
-		playerShooting = player;
+		playerShooting = (EntityPlayer)player;
 		
         this.setSize(0.5F, 0.5F);
         this.setLocationAndAngles(player.posX, player.posY + (double)player.getEyeHeight() - 0.3f, player.posZ, player.rotationYaw, player.rotationPitch);
-        this.posX -= (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.26F);
-        this.posY -= 0.10000000149011612D;
-        this.posZ -= (double)(MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.26F);
-        this.setPosition(this.posX, this.posY, this.posZ);
-        this.yOffset = 0.0F;
         this.motionX = (double)(-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
         this.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
         this.motionY = (double)(-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI));
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, 3.0f, 1.0F);
+        
+        this.setPosition(posX + motionX, posY + motionY, posZ + motionZ);
 	}
 	
     public void onUpdate()
@@ -90,8 +90,8 @@ public class EntityLaserBeam extends Entity
         for (int i = 0; i < var6.size(); i++)
         {
             Entity var10 = (Entity)var6.get(i);
-
-            if (var10.canBeCollidedWith() && (var10 != this.playerShooting))
+            
+            if (var10.canBeCollidedWith() && var10 != this.playerShooting)
             {
                 var11 = 0.3F;
                 AxisAlignedBB var12 = var10.boundingBox.expand((double)var11, (double)var11, (double)var11);
@@ -122,12 +122,12 @@ public class EntityLaserBeam extends Entity
                 
                 if(var4.entityHit instanceof EntityLiving)
                 {
-                	EntityLiving entity = (EntityLiving)var4.entityHit;
                 	
-                	entity.knockBack(entity, 0, 2, 0);
-                	entity.setFire(2);
-                	entity.attackEntityFrom(DamageSource.anvil, 3);
-                	this.setDead();
+                	EntityLiving entity = (EntityLiving)var4.entityHit;
+	            	entity.knockBack(entity, 0, -motionX, -motionZ);
+	            	entity.setFire(2);
+	            	entity.attackEntityFrom(DamageSource.causePlayerDamage(playerShooting), 3);
+	            	this.setDead();
                 }
             }
         }
